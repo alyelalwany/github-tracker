@@ -13,7 +13,7 @@ type Config struct {
 
 func LoadConfig() Config {
 	return Config{
-		Port:     GetEnv("PORT", "8080"),
+		Port:     GetEnv("PORT", "9000"),
 		BindAddr: GetEnv("BIND_ADDR", ""),
 		LogLevel: ParseLogLevel(GetEnv("LOG_LEVEL", "info")),
 	}
