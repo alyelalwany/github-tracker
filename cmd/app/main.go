@@ -31,7 +31,7 @@ func main() {
 	mux.HandleFunc("/healthz", health.Healthz)
 	mux.HandleFunc("/readyz", health.Readyz)
 	mux.HandleFunc("POST /echo", echo.Handler)
-	mux.HandleFunc("/{username}/repos", handler.GetRepoForOwner)
+	mux.HandleFunc("/{username}/repos", handler.GetReposForOwner)
 
 	srv := &http.Server{
 		Addr:              cfg.BindAddr + ":" + cfg.Port,

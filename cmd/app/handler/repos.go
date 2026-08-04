@@ -32,7 +32,7 @@ type reposQuery struct {
 	} `graphql:"user(login: $login)"`
 }
 
-func GetRepoForOwner(w http.ResponseWriter, r *http.Request) {
+func GetReposForOwner(w http.ResponseWriter, r *http.Request) {
 
 	username := r.PathValue("username")
 
