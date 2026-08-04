@@ -48,7 +48,7 @@ type userReposQuery struct {
 }
 
 func (s *Server) GetRepos(w http.ResponseWriter, r *http.Request) {
-	kind := r.PathValue("kind")
+	kind := r.PathValue("kind") // "user" or "org"
 	login := r.PathValue("login")
 	if login == "" {
 		http.Error(w, "login required", http.StatusBadRequest)
