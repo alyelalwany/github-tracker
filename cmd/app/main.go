@@ -27,11 +27,13 @@ func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 
+	s := handler.NewServer() // fork/exec gh once, build githubv4.Client
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/healthz", health.Healthz)
 	mux.HandleFunc("/readyz", health.Readyz)
 	mux.HandleFunc("POST /echo", echo.Handler)
-	mux.HandleFunc("/{username}/repos", handler.GetReposForOwner)
+	mux.HandleFunc("GET /repos/{kind}/{login}", s.GetRepos)
 
 	srv := &http.Server{
 		Addr:              cfg.BindAddr + ":" + cfg.Port,
