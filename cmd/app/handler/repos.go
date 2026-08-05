@@ -86,5 +86,7 @@ func (s *Server) GetRepos(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(repos); err != nil {
 		slog.Error("encode failed", "error", err)
+		http.Error(w, "Encoding failed", http.StatusBadGateway)
 	}
+
 }
